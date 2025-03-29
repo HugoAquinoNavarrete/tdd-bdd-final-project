@@ -1,6 +1,8 @@
 # TDD / BDD Final Project Template
 
-This repository contains the template to be used for the Final Project for the Coursera course **Introduction to TDD/BDD**.
+This repository contains the template to be used for the Final Project for the edX course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
+
+Adjusted by Hugo Aquino - Panama City, March 2025
 
 ## Usage
 
