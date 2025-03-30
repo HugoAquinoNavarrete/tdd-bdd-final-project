@@ -2,7 +2,9 @@
 
 This repository contains the template to be used for the Final Project for the edX course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
 
-Adjusted by Hugo Aquino - Panama City, March 2025
+Adjusted by Hugo Aquino - Panama City, March-April 2025
+
+For TDD initial coverage: 91% and after generating test cases coverage reach XX% and no linting errors (rated 10.00/10).
 
 ## Usage
 

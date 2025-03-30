@@ -27,7 +27,8 @@ import os
 import logging
 import unittest
 from decimal import Decimal
-from service.models import Product, Category, db
+#from service.models import Product, Category, db
+from service.models import Product, Category, db, DataValidationError
 from service import app
 from tests.factories import ProductFactory
 
@@ -192,3 +193,14 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found.count(), count)
         for product in found:
             self.assertEqual(product.category, category)
+
+    #
+    # TEST CASES CREATED TO INCREASE COVERAGE
+    #
+ 
+    def test_update_id_empty(self):
+        """It should Update with empty ID field"""
+        product = ProductFactory()
+        id_empty = self.id == None
+        self.assertRaises(DataValidationError, id_empty)
+        
