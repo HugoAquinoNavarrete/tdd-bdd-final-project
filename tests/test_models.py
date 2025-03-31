@@ -198,23 +198,11 @@ class TestProductModel(unittest.TestCase):
     #
  
     def test_update_id_empty(self):
-        """It should Update with empty ID field"""
-        #product = self.Product.create()
-        #id_empty = ""
-        #print(product.id)
-        #product = ProductFactory()
-        #id = "  "
-        #product.create()
-        #print (id)
-        #self.assertIsNotNone(product.id)
-    
-        #self.assertRaises(DataValidationError, None)
-        products = Product.all()
-        self.assertEqual(products, [])
-        product = ProductFactory()
-        product.id = None
+        """It should Raise an exception with empty ID field"""
+        product = Product(name="Course", description="TDD", id=None, price=30.50, available=True, category=Category.UNKNOWN)
+        
         print(product.id)
-        #product.create()
-        # Assert that it was assigned an id and shows up in the database
-        #self.assertIsNone(product.id)
-        self.assertRaises(DataValidationError, ProductFactory(), None)
+        #self.assertEqual("Update called with empty ID field",self.assertRaises(DataValidationError, product.update()))
+        #self.assertEqual("Update called with empty ID field",self.assertRaises(DataValidationError("Update called with empty ID field"), product.update()))
+        self.assertRaises(DataValidationError(), product.update())
+        #self.assertEqual(DataValidationError(), product.update())
