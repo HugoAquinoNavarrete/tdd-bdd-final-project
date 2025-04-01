@@ -202,3 +202,48 @@ class TestProductModel(unittest.TestCase):
         product.id = None
         with self.assertRaises(DataValidationError):
             product.update()
+
+    def test_invalid_type_boolean(self):
+        """It should Raise an exception with invalid type of Boolean"""
+        product = Product(name="Fedora", description="A red hat", price=12.50, available="True", category=Category.CLOTHS)
+        dictionary_product = product.serialize()
+        product_test = ProductFactory()
+        with self.assertRaises(DataValidationError):
+            product_test.deserialize(dictionary_product)
+
+    def test_invalid_attribute(self):
+        """It should Raise an exception with invalid attribute"""
+        #product_original = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
+        #dictionary = {
+        #    "id": 111,
+        #    "name": "Fedora",
+        #    "description": "A red hat",
+        #    "price": 12.50,
+        #    "available": True,
+        #    "category": Category.CLOTHS
+        #}
+
+        #product_test = ProductFactory()
+
+        #dictionary = {id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)}
+        #product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
+        product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
+        #product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.CLOTHS)
+        #print(product.category)
+        dictionary_product_original = product.serialize()
+        print(dictionary_product_original)
+        
+        product_test = ProductFactory()
+        product_test.deserialize(dictionary_product_original)
+
+        print(product_test.id)
+        print(product_test.name)
+        print(product_test.description)
+        print(product_test.price)
+        print(product_test.available)
+        print(product_test.category)
+
+        #with self.assertRaises(AttributeError,Category.CLOTHS):
+                
+        with self.assertRaises(DataValidationError,"JEANS"):
+            product_test.deserialize(dictionary_product_original)
