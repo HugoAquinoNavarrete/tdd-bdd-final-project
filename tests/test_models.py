@@ -251,9 +251,8 @@ class TestProductModel(unittest.TestCase):
             "description": "For test case",
             "price": 0.50,
             "available": True,
-            "category": Category.UNKNOWN
+            "category": "Category.UNKNOWN"
         }
         product_testing = Product()
-        product_testing.deserialize(dictionary_testing)
-        #with self.assertRaises(DataValidationError):
-        #    product_testing.deserialize(dictionary_testing)
+        with self.assertRaises(DataValidationError):
+            product_testing.deserialize(dictionary_testing)
