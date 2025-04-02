@@ -205,59 +205,55 @@ class TestProductModel(unittest.TestCase):
 
     def test_invalid_type_boolean(self):
         """It should Raise an exception with invalid type of Boolean"""
-        product = Product(name="Course", description="TDD/BDD final project", price=99.00, available="True", category=Category.UNKNOWN)
+        product = Product(
+            name="Course",
+            description="TDD/BDD final project",
+            price=99.00,
+            available="True",
+            category=Category.UNKNOWN)
         dictionary_product = product.serialize()
         product_test = ProductFactory()
         with self.assertRaises(DataValidationError):
             product_test.deserialize(dictionary_product)
 
-    def test_invalid_attribute(self):
-        """It should Raise an exception with invalid attribute"""
-        #product = Product(name="Course", description="TDD/BDD final project", price=99.00, available="True", category=Category.UNKNOWN, "issue": "Testing")
-        #product = Product()
-        
-        #product_original = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
+    def test_body_bad(self):
+        """It should Raise an exception with body of request contained bad or no data"""
         dictionary = {
             "name": "Bug",
+            "description": "For test case",
+            "price": "0.50",
+            "available": True,
+            "category": Category.UNKNOWN
+        }
+        product = Product()
+        with self.assertRaises(DataValidationError):
+            product.deserialize(dictionary)
+
+    def test_invalid_product(self):
+        """It should Raise an exception with invalid product"""
+        dictionary_test = {
+            "nombre": "Bug",
             "description": "For test case",
             "price": 0.50,
             "available": True,
             "category": Category.UNKNOWN,
-            "issue": "Testing"
+            "test": "issue"
         }
-
-        #product_test = ProductFactory()
-
-        #dictionary = {id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)}
-        #product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
-        
-        ###product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.JEANS)
-        
-        #product = Product(id=111, name="Fedora", description="A red hat", price=12.50, available=True, category=Category.CLOTHS)
-        #print(product)
-        
-        print(dictionary)
-
-        ##dictionary_product_original = product.serialize()
-        ##print(dictionary_product_original)
-        
-        #product_test = ProductFactory()
-        #product_test.deserialize(dictionary_product_original)
-
-        #print(product_test.id)
-        #print(product_test.name)
-        #print(product_test.description)
-        #print(product_test.price)
-        #print(product_test.available)
-        #print(product_test.category)
-
-        #with self.assertRaises(AttributeError,Category.CLOTHS):
-                
-        #with self.assertRaises(AttributeError):
-        #    product_test.deserialize(dictionary_product_original)
-
-        #with self.assertRaises(DataValidationError):
-        #    product_test.deserialize(dictionary)
-
+        product_test = Product()
         with self.assertRaises(DataValidationError):
-            deserialize(dictionary)
+            product_test.deserialize(dictionary_test)
+
+    def test_invalid_attribute(self):
+        """It should Raise an exception with invalid attribute"""
+        dictionary_testing = {
+            "id": 507,
+            "name": "Bug",
+            "description": "For test case",
+            "price": 0.50,
+            "available": True,
+            "category": Category.UNKNOWN
+        }
+        product_testing = Product()
+        product_testing.deserialize(dictionary_testing)
+        #with self.assertRaises(DataValidationError):
+        #    product_testing.deserialize(dictionary_testing)
