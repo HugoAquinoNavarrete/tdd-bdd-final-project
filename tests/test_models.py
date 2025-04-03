@@ -256,3 +256,15 @@ class TestProductModel(unittest.TestCase):
         product_testing = Product()
         with self.assertRaises(DataValidationError):
             product_testing.deserialize(dictionary_testing)
+
+    def test_find_by_price(self):
+        """It should Find Products by Price"""
+        products = ProductFactory.create_batch(10)
+        for product in products:
+            product.create()
+        price = products[0].price
+        count = len([product for product in products if product.price == price])
+        found = Product.find_by_price(price)
+        self.assertEqual(found.count(), count)
+        for product in found:
+            self.assertEqual(product.price, price)

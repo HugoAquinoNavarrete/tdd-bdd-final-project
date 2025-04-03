@@ -4,7 +4,7 @@ This repository contains the template to be used for the Final Project for the e
 
 Adjusted by Hugo Aquino - Panama City, March-April 2025
 
-For TDD initial coverage: 91% and after generating test cases coverage reach XX% and no linting errors (rated 10.00/10).
+For TDD initial coverage was 91% and after generating test cases coverage reached 95% without linting errors (rated 10.00/10).
 
 ## Usage
 
