@@ -35,7 +35,7 @@ from tests.factories import ProductFactory
 
 # Disable all but critical errors during normal test run
 # uncomment for debugging failing tests
-# logging.disable(logging.CRITICAL)
+#logging.disable(logging.CRITICAL)
 
 # DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///../db/test.db')
 DATABASE_URI = os.getenv(
@@ -178,11 +178,11 @@ class TestProductRoutes(TestCase):
 
     def test_get_product_not_found(self):
         """It should not Get a Product thats not found"""
-        response = self.client.get(f"{BASE_URL}/a")
+        response = self.client.get(f"{BASE_URL}/0")
         logging.debug("Status: %s", response.status_code)
-        #self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        #data = response.get_json()
-        #self.assertIn("was not found", data["message"])
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        data = response.get_json()
+        self.assertIn("was not found", data["message"])
 
     def test_update_product(self):
         """It should Update an existing Product"""
@@ -201,36 +201,43 @@ class TestProductRoutes(TestCase):
 
     def test_update_product_not_found(self):
         """It should not Update a Product thats not found"""
-        response = self.client.get(f"{BASE_URL}/999")
-        logging.debug("Response: %s", response.status_code)
+        # create a product to update
+        test_product = ProductFactory()
+        response = self.client.post(BASE_URL, json=test_product.serialize())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # update the product
+        new_product = response.get_json()
+        new_product["id"] = 0
+        response = self.client.put(f"{BASE_URL}/{new_product['id']}", json=new_product)
+        logging.debug("Status: %s", response.status_code)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         data = response.get_json()
         self.assertIn("was not found", data["message"])
 
-
-    #def test_delete_product(self):
-    #    """It should Delete a Product"""
-    #    products = self._create_products(5)
-    #    product_count = self.get_product_count()
-    #    test_product = products[0]
-    #    response = self.client.delete(f"{BASE_URL}/{test_product.id}")
-    #    self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-    #    self.assertEqual(len(response.data), 0)
-    #    # make sure they are deleted
-    #    response = self.client.get(f"{BASE_URL}/{test_product.id}")
-    #    self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    #    new_count = self.get_product_count()
-    #    self.assertEqual(new_count, product_count - 1)
-
+    def test_delete_product(self):
+        """It should Delete a Product"""
+        products = self._create_products(5)
+        product_count = self.get_product_count()
+        logging.debug("cantidad productos = %s", product_count)
+        test_product = products[0]
+        response = self.client.delete(f"{BASE_URL}/{test_product.id}")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(len(response.data), 0)
+        # make sure they are deleted
+        response = self.client.get(f"{BASE_URL}/{test_product.id}")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        new_count = self.get_product_count()
+        self.assertEqual(new_count, product_count - 1)
 
     ######################################################################
     # Utility functions
     ######################################################################
-
     def get_product_count(self):
         """save the current number of products"""
         response = self.client.get(BASE_URL)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        logging.debug("respuesta = %s", response.status_code)
+        #self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
-        # logging.debug("data = %s", data)
+        logging.debug("data = %s", data)
         return len(data)
