@@ -1,10 +1,10 @@
-# TDD / BDD Final Project Template
+# TDD / BDD Final Project
 
-This repository contains the template to be used for the Final Project for the edX course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
+This repository contains Final Project´s template for edX course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
 
 Adjusted by Hugo Aquino - Panama City, March-April 2025
 
-For TDD initial coverage was 91% and after generating test cases coverage reached 95% without linting errors (rated 10.00/10).
+For **TDD**, initial coverage was **91%** and after generating test cases for `models` and `routes`, the coverage obtained was **97%** without linting errors (rated 10.00/10).
 
 ## Usage
 
