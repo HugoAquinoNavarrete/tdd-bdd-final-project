@@ -4,7 +4,7 @@ This repository contains Final Project´s template for edX course **IBM CD0241EN
 
 Adjusted by Hugo Aquino - Panama City, March-April 2025
 
-For **TDD**, initial coverage was **91%** and after generating test cases for `models` and `routes`, the coverage obtained was **97%** without linting errors (rated 10.00/10).
+For **TDD (target: 95% code coverage without linting errors)**: initial coverage was **91%** and after generating test cases and adjusting code for `models` and `routes`, the coverage obtained was **97%** without linting errors (rated 10.00/10).
 
 ## Usage
 
