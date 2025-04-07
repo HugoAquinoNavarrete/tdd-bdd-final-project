@@ -20,6 +20,24 @@ features/products.feature
 features/steps/load_steps.py
 ```
 
+## Results
+
+* Web interface:
+
+![Web interface](images/home_page.png)
+
+* `nosetest` results:
+
+![nosetests](images/nosetests_results.JPG)
+
+* `make lint` results:
+
+![make lint](images/make_lint_results.JPG)
+
+* `behave` results:
+
+![behave](images/behave_results.JPG)
+
 ## License
 
 Licensed under the Apache License. See [LICENSE](/LICENSE)
