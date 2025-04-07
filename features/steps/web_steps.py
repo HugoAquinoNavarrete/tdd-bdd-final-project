@@ -127,6 +127,14 @@ def step_impl(context, message):
         expected_conditions.presence_of_element_located((By.TAG_NAME, 'body'))
     )
     assert message in element.text, f'Expected message "{message}" not found in page'
+
+@then(u'I should not see "{text}" in the results')
+def step_impl(context, text):
+    element = WebDriverWait(context.driver, context.wait_seconds).until(
+        expected_conditions.presence_of_element_located((By.ID, 'search_results'))
+    )
+    assert text not in element.text, f'Found unexpected text "{text}" in results'
+
 ##################################################################
 # This code works because of the following naming convention:
 # The id field for text input in the html is the element name
