@@ -121,7 +121,12 @@ def step_impl(context, name):
     )
     assert(found)
 
-
+@then(u'I should see the message "{message}"')
+def step_impl(context, message):
+    element = WebDriverWait(context.driver, context.wait_seconds).until(
+        expected_conditions.presence_of_element_located((By.TAG_NAME, 'body'))
+    )
+    assert message in element.text, f'Expected message "{message}" not found in page'
 ##################################################################
 # This code works because of the following naming convention:
 # The id field for text input in the html is the element name
