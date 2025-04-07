@@ -1,36 +1,16 @@
 # TDD / BDD Final Project
 
-This repository contains Final Project´s template for edX course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
+This repository contains Final Project´s for **edX** course **IBM CD0241EN - Test and Behavior Driven Development (TDD/BDD)**.
 
-Adjusted by Hugo Aquino - Panama City, March-April 2025
+Adjusted by **Hugo Aquino - Panama City, March-April 2025**
 
-For **TDD (target: 95% code coverage without linting errors)**: initial coverage was **91%** and after generating test cases and adjusting code for `models` and `routes`, the coverage obtained was **97%** without linting errors (rated 10.00/10).
+For **TDD (target: 95% code coverage without linting errors)**: initial coverage was **91%** and after generating test cases and adjusting code for `models` and `routes`, the coverage obtained was **97% without linting errors (rated 10.00/10)**.
 
-## Usage
-
-This repository is to be used as a template to create your own repository in your own GitHub account. No need to Fork it as it has been set up as a Template. This will avoid confusion when making Pull Requests in the future.
-
-From the GitHub **Code** page, press the green **Use this template** button to create your own repository from this template. 
-
-Name your repo: `tdd-bdd-final-project`.
-
-## Setup
-
-After entering the lab environment you will need to run the `setup.sh` script in the `./bin` folder to install the prerequisite software.
-
-```bash
-bash bin/setup.sh
-```
-
-Then you must exit the shell and start a new one for the Python virtual environment to be activated.
-
-```bash
-exit
-```
+For **BDD (target: 7 scenarios tested and passed)**: the 7 scenarios requested were created, tested and passed.
 
 ## Tasks
 
-In this project you will use good Test Driven Development (TDD) and Behavior Driven Development (BDD) techniques to write TDD test cases, BDD scenarios, and code, updating the following files:
+In this project good Test Driven Development (TDD) and Behavior Driven Development (BDD) techniques were achieved to write TDD test cases, BDD scenarios, and code, updating the following files:
 
 ```bash
 tests/test_models.py
@@ -39,8 +19,6 @@ service/routes.py
 features/products.feature
 features/steps/load_steps.py
 ```
-
-You will be given partial implementations in each of these files to get you started. Use those implementations as examples of the code you should write.
 
 ## License
 
